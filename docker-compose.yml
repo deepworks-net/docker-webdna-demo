@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  base:
+    image: deepworks/webdna-demo:base
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    build:
+      context: .
+  centos7:
+    image: deepworks/webdna-demo:centos7
+    extends:
+      service: base
+    volumes:
+      - type: bind
+        source: ./public
+        target: /var/www/html/public
+    build:
+      dockerfile: Dockerfile.centos7

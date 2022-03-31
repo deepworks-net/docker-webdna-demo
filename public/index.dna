@@ -1,0 +1,4 @@
+Welcome To WebDNA and Docker!
+<br/><br/>
+Running WebDNA FCGI [version]<br/>
+OS Version: [SHELL]. /etc/os-release && echo $PRETTY_NAME[/SHELL]
