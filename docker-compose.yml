@@ -12,6 +12,8 @@ services:
       context: .
   centos7:
     image: deepworks/webdna-demo:centos7
+  centos7-fcgi:
+    image: deepworks/webdna-demo:centos7-fcgi-8.6.5
     extends:
       service: base
     volumes:
