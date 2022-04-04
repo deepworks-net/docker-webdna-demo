@@ -32,3 +32,13 @@ services:
         target: /var/www/html/public
     build:
       dockerfile: Dockerfile.ubuntu16
+  ubuntu20-fcgi:
+    image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.5
+    extends:
+      service: base
+    volumes:
+      - type: bind
+        source: ./public
+        target: /var/www/html/public
+    build:
+      dockerfile: Dockerfile.ubuntu20

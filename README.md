@@ -13,6 +13,7 @@ The biggest reason though would be having a highly portable, cross platform, eas
 
 ## Demonstration Images Quick Start
 
+### Build the project:
 [Download the repository](https://github.com/deepworks-net/docker-webdna-demo/archive/refs/heads/main.zip) and place it somewhere on your computer. Open a terminal and navigate to the location of the repository:
 ```SHELL
 cd '/YOUR/LOCATION/TO/REPO'
@@ -20,6 +21,7 @@ cd '/YOUR/LOCATION/TO/REPO'
 Then choose the service to build from the [docker-compose.yml](docker-compose.yml) file. Current services are:
 - centos7-fcgi (WebDNA FCGI 8.6.5)
 - ubuntu16-fcgi (WebDNA FCGI 8.6.5)
+- ubuntu20-fcgi (WebDNA FCGI 8.6.5)
 
 From there run the following command to build the demo substituting {SERVICE} with service name:
 ```SHELL
