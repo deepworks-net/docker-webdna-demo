@@ -19,6 +19,7 @@ The biggest reason though would be having a highly portable, cross platform, eas
 cd '/YOUR/LOCATION/TO/REPO'
 ```
 Then choose the service to build from the [docker-compose.yml](docker-compose.yml) file. Current services are:
+- alpine312-fcgi (Alpine 3.12.12, WebDNA FCGI 8.6.5)
 - centos7-fcgi (CentOS 7.9.2009, WebDNA FCGI 8.6.5)
 - centos8-fcgi (CentOS 8.4.2105, WebDNA FCGI 8.6.5)
 - ubuntu16-fcgi (Ubuntu 16.04, WebDNA FCGI 8.6.5)
