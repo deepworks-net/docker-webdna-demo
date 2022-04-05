@@ -19,23 +19,26 @@ The biggest reason though would be having a highly portable, cross platform, eas
 cd '/YOUR/LOCATION/TO/REPO'
 ```
 Then choose the service to build from the [docker-compose.yml](docker-compose.yml) file. Current services are:
-- centos7-fcgi (WebDNA FCGI 8.6.5)
-- centos8-fcgi (WebDNA FCGI 8.6.5)
-- ubuntu16-fcgi (WebDNA FCGI 8.6.5)
-- ubuntu20-fcgi (WebDNA FCGI 8.6.5)
+- centos7-fcgi (CentOS 7.9.2009, WebDNA FCGI 8.6.5)
+- centos8-fcgi (CentOS 8.4.2105, WebDNA FCGI 8.6.5)
+- ubuntu16-fcgi (Ubuntu 16.04, WebDNA FCGI 8.6.5)
+- ubuntu18-fcgi (Ubuntu 18.04, WebDNA FCGI 8.6.5)
+- ubuntu20-fcgi (Ubuntu 20.04, WebDNA FCGI 8.6.5)
+- ubuntu21-fcgi (Ubuntu 21.10, WebDNA FCGI 8.6.5)
+- ubuntu22-fcgi (Ubuntu 22.04, WebDNA FCGI 8.6.5)
 
 From there run the following command to build the demo substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose build {SERVICE}
-# To build ubuntu16-fcgi:
-docker-compose build ubuntu16-fcgi
+# To build ubuntu22-fcgi:
+docker-compose build ubuntu22-fcgi
 ```
 
 Then use the following command to run the demo by again substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose up -d {SERVICE}
-# To run ubuntu16-fcgi after building:
-docker-compose up -d ubuntu16-fcgi
+# To run ubuntu22-fcgi after building:
+docker-compose up -d ubuntu22-fcgi
 ```
 Once the container is running, navigate to http://localhost/public/index.dna to see it in action and can be modified from the public folder in this repository. 
 

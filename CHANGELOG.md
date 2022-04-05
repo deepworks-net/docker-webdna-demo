@@ -1,5 +1,10 @@
 # Docker WebDNA Changelog
 
+## (04/06/2022) v0.4.0-beta:
+- Added support for Ubuntu 18.04 FCGI 8.6.5
+- Added support for Ubuntu 21.10 FCGI 8.6.5
+- Added support for Ubuntu 22.04 FCGI 8.6.5
+
 ## (04/05/2022) v0.3.0-beta:
 - Added support for CentOS 8 FCGI 8.6.5
 - Added support for Ubuntu 20.04 FCGI 8.6.5
