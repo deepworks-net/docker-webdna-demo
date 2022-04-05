@@ -20,6 +20,7 @@ cd '/YOUR/LOCATION/TO/REPO'
 ```
 Then choose the service to build from the [docker-compose.yml](docker-compose.yml) file. Current services are:
 - centos7-fcgi (WebDNA FCGI 8.6.5)
+- centos8-fcgi (WebDNA FCGI 8.6.5)
 - ubuntu16-fcgi (WebDNA FCGI 8.6.5)
 - ubuntu20-fcgi (WebDNA FCGI 8.6.5)
 

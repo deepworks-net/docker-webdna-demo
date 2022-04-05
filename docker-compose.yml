@@ -8,6 +8,10 @@ services:
     ports:
     - "80:80"
     - "443:443"
+    volumes:
+      - type: bind
+        source: ./public
+        target: /var/www/html/public
     build:
       context: .
   centos7:
@@ -16,29 +20,23 @@ services:
     image: deepworks/webdna-demo:centos7-fcgi-8.6.5
     extends:
       service: base
-    volumes:
-      - type: bind
-        source: ./public
-        target: /var/www/html/public
     build:
       dockerfile: Dockerfile.centos7
+  centos8-fcgi:
+    image: deepworks/webdna-demo:centos8-fcgi-8.6.5
+    extends:
+      service: base
+    build:
+      dockerfile: Dockerfile.centos8
   ubuntu16-fcgi:
     image: deepworks/webdna-demo:ubuntu16-fcgi-8.6.5
     extends:
       service: base
-    volumes:
-      - type: bind
-        source: ./public
-        target: /var/www/html/public
     build:
       dockerfile: Dockerfile.ubuntu16
   ubuntu20-fcgi:
     image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.5
     extends:
       service: base
-    volumes:
-      - type: bind
-        source: ./public
-        target: /var/www/html/public
     build:
       dockerfile: Dockerfile.ubuntu20
