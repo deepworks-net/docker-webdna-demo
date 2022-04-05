@@ -29,6 +29,7 @@ RUN apt-get update && \
     WEBDNA_LOC=$WEBDNA_LOC \
     APACHE_USER=$APACHE_USER \
     APACHE_LOC=$APACHE_LOC \
+    APACHE_CONFIG=$APACHE_CONFIG \
     bash "./webdna.sh" && \ 
     rm -f "./webdna.sh" && \
     # Clean Up After Ourselves

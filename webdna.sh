@@ -19,16 +19,15 @@ rm -f "${DNA_EXECUTABLE}.zip"
 # 'Install' WebDNA
 mv "${DNA_EXECUTABLE}/WebDNA.fcgi" "WebDNA/WebDNA.fcgi"
 chmod 0755 "WebDNA/WebDNA.fcgi"
-cp -R "WebDNA" ${WEBDNA_LOC}
+mv "WebDNA" ${WEBDNA_LOC}
 chown -R $APACHE_USER:$APACHE_USER ${WEBDNA_LOC}
 
 # Remove WebDNA Artifacts
-#rm -rf "${DNA_EXECUTABLE}"
-#rm -rf "${DNA_FOLDER}"
+rm -rf "${DNA_EXECUTABLE}"
 
 # Quick Config of Apache
 mkdir -p "$WEBROOT/public"
-sed -i -e "s/Options Indexes FollowSymLinks/Options -Indexes +FollowSymLinks +ExecCGI/g" "${APACHE_CONFIG}"
+sed -i -e "s/Options Indexes FollowSymLinks/Options Includes FollowSymLinks ExecCGI/g" "${APACHE_CONFIG}"
 echo "
 AddType text/html .dna
 AddType text/html .tpl
@@ -39,7 +38,7 @@ AddType text/html .tpl
     deny from all
 </Location>
 <Directory "$WEBROOT">
-Options -Indexes +FollowSymLinks +ExecCGI
+Options Includes FollowSymLinks ExecCGI
 FcgidWrapper ${WEBDNA_LOC}/WebDNA.fcgi .dna
 FcgidWrapper ${WEBDNA_LOC}/WebDNA.fcgi .html
 FcgidWrapper ${WEBDNA_LOC}/WebDNA.fcgi .tpl

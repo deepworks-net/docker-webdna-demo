@@ -8,58 +8,71 @@ services:
     ports:
     - "80:80"
     - "443:443"
+    build:
+      context: .
+  base-vol:
+    extends:
+      service: base
     volumes:
       - type: bind
         source: ./public
         target: /var/www/html/public
     build:
-      context: .
-  centos7:
-    image: deepworks/webdna-demo:centos7
+      dockerfile: Dockerfile.alpine315
+  alpine312-fcgi:
+    image: deepworks/webdna-demo:alpine312-fcgi-8.6.5
+    extends:
+      service: base
+    volumes:
+      - type: bind
+        source: ./public
+        target: /var/www/localhost/htdocs/public
+    build:
+      dockerfile: Dockerfile.alpine312
   centos7-fcgi:
     image: deepworks/webdna-demo:centos7-fcgi-8.6.5
     extends:
-      service: base
+      service: base-vol
     build:
       dockerfile: Dockerfile.centos7
   centos8-fcgi:
     image: deepworks/webdna-demo:centos8-fcgi-8.6.5
     extends:
-      service: base
+      service: base-vol
     build:
       dockerfile: Dockerfile.centos8
   # Ubuntu 16.04 FCGI 8.6.5
   ubuntu16-fcgi:
     image: deepworks/webdna-demo:ubuntu16-fcgi-8.6.5
     extends:
-      service: base
+      service: base-vol
     build:
       dockerfile: Dockerfile.ubuntu16
   # Ubuntu 18.04 FCGI 8.6.5
   ubuntu18-fcgi:
     image: deepworks/webdna-demo:ubuntu18-fcgi-8.6.5
     extends:
-      service: base
+      service: base-vol
     build:
       dockerfile: Dockerfile.ubuntu18
   # Ubuntu 20.04 FCGI 8.6.5
   ubuntu20-fcgi:
     image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.5
     extends:
-      service: base
+      service: base-vol
     build:
       dockerfile: Dockerfile.ubuntu20
   # Ubuntu 21.10 FCGI 8.6.5
   ubuntu21-fcgi:
     image: deepworks/webdna-demo:ubuntu21-fcgi-8.6.5
     extends:
-      service: base
+      service: base-vol
     build:
       dockerfile: Dockerfile.ubuntu21
   # Ubuntu 22.04 FCGI 8.6.5
   ubuntu22-fcgi:
     image: deepworks/webdna-demo:ubuntu22-fcgi-8.6.5
     extends:
-      service: base
+      service: base-vol
     build:
       dockerfile: Dockerfile.ubuntu22

@@ -1,6 +1,10 @@
 # Docker WebDNA Changelog
 
-## (04/06/2022) v0.4.0-beta:
+## (04/05/2022) v0.5.0-beta:
+- Added Support for Alpine 3.12.12 FCGI 8.6.5
+- Optimized WebDNA Folder source placement reducing image size
+
+## (04/05/2022) v0.4.0-beta:
 - Added support for Ubuntu 18.04 FCGI 8.6.5
 - Added support for Ubuntu 21.10 FCGI 8.6.5
 - Added support for Ubuntu 22.04 FCGI 8.6.5

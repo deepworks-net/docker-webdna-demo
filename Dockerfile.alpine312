@@ -1,12 +1,12 @@
 # Pull the Base Image
-FROM centos:7.9.2009 as Base
+FROM alpine:3.12.12 as Base
 
 ARG DNA_FOLDER="WebDNA-folder-8.6"
-ARG DNA_EXECUTABLE="WebDNA-Linux-FastCGI-8.6.5"
+ARG DNA_EXECUTABLE="WebDNA-Alpine-FastCGI-8.6.5"
 ARG APACHE_USER="apache"
-ARG APACHE_LOC="/etc/httpd"
-ARG APACHE_CONFIG="$APACHE_LOC/conf/httpd.conf"
-ARG WEBROOT="/var/www/html"
+ARG APACHE_LOC="/etc/apache2"
+ARG APACHE_CONFIG="$APACHE_LOC/httpd.conf"
+ARG WEBROOT="/var/www/localhost/htdocs"
 ARG WEBDNA_LOC="$WEBROOT/WebDNA"
 
 # Set Working Directory
@@ -17,8 +17,10 @@ COPY webdna.sh ./
 
 ## Build The Container
 # Perform Updates
-RUN yum -y install dnf && \ 
-    dnf --setopt=install_weak_deps=False -y install wget httpd mod_fcgid mod_ssl openssl unzip && \
+RUN apk -U upgrade --no-cache && \
+    apk add wget bash libstdc++ apache2 apache-mod-fcgid openssl unzip --no-cache && \
+    # Enable the rewrite module
+    sed -i -e "s|#LoadModule rewrite_module modules/mod_rewrite.so|LoadModule rewrite_module modules/mod_rewrite.so|g" "$APACHE_CONFIG" && \
     # Run WebDNA Setup Script
     DNA_FOLDER=$DNA_FOLDER \
     DNA_EXECUTABLE=$DNA_EXECUTABLE \
@@ -27,12 +29,12 @@ RUN yum -y install dnf && \
     APACHE_USER=$APACHE_USER \
     APACHE_LOC=$APACHE_LOC \
     APACHE_CONFIG=$APACHE_CONFIG \
-    ./webdna.sh && \
+    bash "./webdna.sh" && \
     rm -f ./webdna.sh && \
     # clean up after ourselves
-    dnf remove -y wget unzip && \
-    dnf clean all && \
-    yum clean all
+    apk del wget unzip && \
+    # Delete Cache
+    rm -rf /var/cache/apk/*
 
 # Fresh Image Layer
 FROM scratch AS Final
