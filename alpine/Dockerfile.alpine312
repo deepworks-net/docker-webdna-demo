@@ -13,7 +13,7 @@ ARG WEBDNA_LOC="$WEBROOT/WebDNA"
 WORKDIR /tmp
 
 # Copy over setup scripts
-COPY webdna.sh ./
+COPY ../webdna.sh ./
 
 ## Build The Container
 # Perform Updates

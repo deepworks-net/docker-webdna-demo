@@ -1,5 +1,10 @@
 # Docker WebDNA Changelog
 
+## (04/07/2022) v0.5.1-beta:
+- Moved Ubuntu Dockerfiles to their own folder
+- Moved Alpine Dockerfiles to their own folder
+- Moved CentOS Dockerfiles to their own folder
+
 ## (04/05/2022) v0.5.0-beta:
 - Added Support for Alpine 3.12.12 FCGI 8.6.5
 - Optimized WebDNA Folder source placement reducing image size
