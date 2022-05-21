@@ -1,9 +1,9 @@
 # Pull the Base Image
 FROM ubuntu:20.04 as Base
 
-ARG DNA_FOLDER="WebDNA-folder-8.6"
-ARG DNA_EXECUTABLE="WebDNA-Linux-FastCGI-8.6.5"
-ARG APACHE_USER="www-data"
+ARG DNA_FOLDER="${DNA_FOLDER:-WebDNA-folder-8.6}"
+ARG DNA_EXECUTABLE="${DNA_EXECUTABLE:-WebDNA-Linux-FastCGI-8.6.5}"
+ARG APACHE_USER="${APACHE_USER:-www-data}"
 ARG APACHE_LOC="/etc/apache2"
 ARG APACHE_CONFIG="$APACHE_LOC/apache2.conf"
 ARG WEBROOT="/var/www/html"
@@ -23,13 +23,13 @@ RUN apt-get update && \
     # Enable the rewrite module
     a2enmod rewrite && \
     # Run WebDNA Setup Script
-    DNA_FOLDER=$DNA_FOLDER \
-    DNA_EXECUTABLE=$DNA_EXECUTABLE \
-    WEBROOT=$WEBROOT \
-    WEBDNA_LOC=$WEBDNA_LOC \
-    APACHE_USER=$APACHE_USER \
-    APACHE_LOC=$APACHE_LOC \
-    APACHE_CONFIG=$APACHE_CONFIG \
+    DNA_FOLDER="$DNA_FOLDER" \
+    DNA_EXECUTABLE="$DNA_EXECUTABLE" \
+    WEBROOT="$WEBROOT" \
+    WEBDNA_LOC="$WEBDNA_LOC" \
+    APACHE_USER="$APACHE_USER" \
+    APACHE_LOC="$APACHE_LOC" \
+    APACHE_CONFIG="$APACHE_CONFIG" \
     bash "./webdna.sh" && \ 
     rm -f "./webdna.sh" && \
     # Clean Up After Ourselves

@@ -22,39 +22,65 @@ cd '/YOUR/LOCATION/TO/REPO'
 
 Choose the service to run/build from the [docker-compose.yml](docker-compose.yml) file. Current services are:
 
-- Alipine
-    - alpine312-fcgi (Alpine 3.12.12, WebDNA FCGI 8.6.5)
-- CentOS
-    - centos7-fcgi (CentOS 7.9.2009, WebDNA FCGI 8.6.5)
-    - centos8-fcgi (CentOS 8.4.2105, WebDNA FCGI 8.6.5)
-- Ubuntu
-    - ubuntu16-fcgi (Ubuntu 16.04, WebDNA FCGI 8.6.5)
-    - ubuntu18-fcgi (Ubuntu 18.04, WebDNA FCGI 8.6.5)
-    - ubuntu20-fcgi (Ubuntu 20.04, WebDNA FCGI 8.6.5)
-    - ubuntu21-fcgi (Ubuntu 21.10, WebDNA FCGI 8.6.5)
-    - ubuntu22-fcgi (Ubuntu 22.04, WebDNA FCGI 8.6.5)
+- [AlmaLinux](almalinux/README.md)
+    - AlmaLinux 8.5
+        - almalinux85-fcgi-865 (AlmaLinux 8.5-20220510, WebDNA FCGI 8.6.5)
+        - almalinux85-fcgi-864 (AlmaLinux 8.5-20220510, WebDNA FCGI 8.6.4)
+        - almalinux85-fcgi-863 (AlmaLinux 8.5-20220510, WebDNA FCGI 8.6.3)
+        - almalinux85-fcgi-861 (AlmaLinux 8.5-20220510, WebDNA FCGI 8.6.1)
+- [Alpine](alpine/README.md)
+    - Alpine 3.12.12
+        - alpine312-fcgi-865 (Alpine 3.12.12, WebDNA FCGI 8.6.5)
+- [CentOS](centos/README.md)
+    - CentOS 7
+        - centos7-fcgi-865 (CentOS 7.9.2009, WebDNA FCGI 8.6.5)
+    - CentOS 8
+        - centos8-fcgi-865 (CentOS 8.4.2105, WebDNA FCGI 8.6.5)
+        - centos8-fcgi-864 (CentOS 8.4.2105, WebDNA FCGI 8.6.4)
+        - centos8-fcgi-863 (CentOS 8.4.2105, WebDNA FCGI 8.6.3)
+        - centos8-fcgi-861 (CentOS 8.4.2105, WebDNA FCGI 8.6.1)
+- [RockyLinux](rockylinux/README.md)
+    - RockyLinux 8.5
+        - rockylinux85-fcgi-865 (RockyLinux 8.5.20220308, WebDNA FCGI 8.6.5)
+        - rockylinux85-fcgi-864 (RockyLinux 8.5.20220308, WebDNA FCGI 8.6.4)
+        - rockylinux85-fcgi-863 (RockyLinux 8.5.20220308, WebDNA FCGI 8.6.3)
+        - rockylinux85-fcgi-861 (RockyLinux 8.5.20220308, WebDNA FCGI 8.6.1)
+- [Ubuntu](ubuntu/README.md)
+    - Ubuntu 16.04
+        - ubuntu16-fcgi-865 (Ubuntu 16.04, WebDNA FCGI 8.6.5)
+        - ubuntu16-fcgi-864 (Ubuntu 16.04, WebDNA FCGI 8.6.4)
+        - ubuntu16-fcgi-863 (Ubuntu 16.04, WebDNA FCGI 8.6.3)
+        - ubuntu16-fcgi-861 (Ubuntu 16.04, WebDNA FCGI 8.6.1)
+    - Ubuntu 18.04
+        - ubuntu18-fcgi-865 (Ubuntu 18.04, WebDNA FCGI 8.6.5)
+    - Ubuntu 20.04
+        - ubuntu20-fcgi-865 (Ubuntu 20.04, WebDNA FCGI 8.6.5)
+    - Ubuntu 21.10
+        - ubuntu21-fcgi-865 (Ubuntu 21.10, WebDNA FCGI 8.6.5)
+    - Ubuntu 22.04
+        - ubuntu22-fcgi-865 (Ubuntu 22.04, WebDNA FCGI 8.6.5)
 
 ### Run the Project:
 Then use the following command to run the demo by again substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose up -d {SERVICE}
-# To run ubuntu22-fcgi after building:
-docker-compose up -d ubuntu22-fcgi
+# To run ubuntu22-fcgi-865 after building:
+docker-compose up -d ubuntu22-fcgi-865
 ```
 
 ### Build the project:
 From there run the following command to build the demo substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose build {SERVICE}
-# To build ubuntu22-fcgi:
-docker-compose build ubuntu22-fcgi
+# To build ubuntu22-fcgi-865:
+docker-compose build ubuntu22-fcgi-865
 ```
 
 Then use the following command to run the demo by again substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose up -d {SERVICE}
-# To run ubuntu22-fcgi after building:
-docker-compose up -d ubuntu22-fcgi
+# To run ubuntu22-fcgi-865 after building:
+docker-compose up -d ubuntu22-fcgi-865
 ```
 Once the container is running, navigate to http://localhost/public/index.dna to see it in action! Anything in the 'public' folder will be served by apache and processed by WebDNA.
 

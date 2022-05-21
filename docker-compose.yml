@@ -17,9 +17,41 @@ services:
       - type: bind
         source: ./public
         target: /var/www/html/public
+  # AlmaLinux 8.5 FCGI 8.6.5
+  almalinux85-fcgi-865:
+    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.5
+    extends:
+      service: base-vol
     build:
-      dockerfile: Dockerfile.alpine315
-  alpine312-fcgi:
+      dockerfile: almalinux/almalinux85.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # AlmaLinux 8.5 FCGI 8.6.4
+  almalinux85-fcgi-864:
+    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.4
+    extends:
+      service: almalinux85-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # AlmaLinux 8.5 FCGI 8.6.3
+  almalinux85-fcgi-863:
+    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.3
+    extends:
+      service: almalinux85-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # AlmaLinux 8.5 FCGI 8.6.1
+  almalinux85-fcgi-861:
+    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.1
+    extends:
+      service: almalinux85-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
+  # Alpine 3.12 FCGI 8.6.5
+  alpine312-fcgi-865:
     image: deepworks/webdna-demo:alpine312-fcgi-8.6.5
     extends:
       service: base
@@ -28,51 +60,174 @@ services:
         source: ./public
         target: /var/www/localhost/htdocs/public
     build:
-      dockerfile: alpine/Dockerfile.alpine312
-  centos7-fcgi:
+      dockerfile: alpine/alpine312.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Alpine-FastCGI-8.6.5"
+  # CentOS 7 FCGI 8.6.5
+  centos7-fcgi-865:
     image: deepworks/webdna-demo:centos7-fcgi-8.6.5
     extends:
       service: base-vol
     build:
-      dockerfile: centos/Dockerfile.centos7
-  centos8-fcgi:
+      dockerfile: centos/centos7.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # CentOS 7 FCGI 8.6.4
+  centos7-fcgi-864:
+    image: deepworks/webdna-demo:centos7-fcgi-8.6.4
+    extends:
+      service: centos7-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # CentOS 7 FCGI 8.6.3
+  centos7-fcgi-863:
+    image: deepworks/webdna-demo:centos7-fcgi-8.6.3
+    extends:
+      service: centos7-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # CentOS 7 FCGI 8.6.1
+  centos7-fcgi-861:
+    image: deepworks/webdna-demo:centos7-fcgi-8.6.1
+    extends:
+      service: centos7-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
+  # CentOS 8 FCGI 8.6.5
+  centos8-fcgi-865:
     image: deepworks/webdna-demo:centos8-fcgi-8.6.5
     extends:
       service: base-vol
     build:
-      dockerfile: centos/Dockerfile.centos8
+      dockerfile: centos/centos8.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # CentOS 8 FCGI 8.6.4
+  centos8-fcgi-864:
+    image: deepworks/webdna-demo:centos8-fcgi-8.6.4
+    extends:
+      service: centos8-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # CentOS 8 FCGI 8.6.3
+  centos8-fcgi-863:
+    image: deepworks/webdna-demo:centos8-fcgi-8.6.3
+    extends:
+      service: centos8-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # CentOS 8 FCGI 8.6.1
+  centos8-fcgi-861:
+    image: deepworks/webdna-demo:centos8-fcgi-8.6.1
+    extends:
+      service: centos8-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
+  # RockyLinux 8.5 FCGI 8.6.5
+  rockylinux85-fcgi-865:
+    image: deepworks/webdna-demo:rockylinux85-fcgi-8.6.5
+    extends:
+      service: base-vol
+    build:
+      dockerfile: rockylinux/rockylinux85.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # RockyLinux 8.5 FCGI 8.6.4
+  rockylinux85-fcgi-864:
+    image: deepworks/webdna-demo:rockylinux85-fcgi-8.6.4
+    extends:
+      service: rockylinux85-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # RockyLinux 8.5 FCGI 8.6.3
+  rockylinux85-fcgi-863:
+    image: deepworks/webdna-demo:rockylinux85-fcgi-8.6.3
+    extends:
+      service: rockylinux85-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # RockyLinux 8.5 FCGI 8.6.1
+  rockylinux85-fcgi-861:
+    image: deepworks/webdna-demo:rockylinux85-fcgi-8.6.1
+    extends:
+      service: rockylinux85-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
   # Ubuntu 16.04 FCGI 8.6.5
-  ubuntu16-fcgi:
+  ubuntu16-fcgi-865:
     image: deepworks/webdna-demo:ubuntu16-fcgi-8.6.5
     extends:
       service: base-vol
     build:
-      dockerfile: ubuntu/Dockerfile.ubuntu16
+      dockerfile: ubuntu/ubuntu16.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # Ubuntu 16.04 FCGI 8.6.4
+  ubuntu16-fcgi-864:
+    image: deepworks/webdna-demo:ubuntu16-fcgi-8.6.4
+    extends:
+      service: ubuntu16-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # Ubuntu 16.04 FCGI 8.6.3
+  ubuntu16-fcgi-863:
+    image: deepworks/webdna-demo:ubuntu16-fcgi-8.6.3
+    extends:
+      service: ubuntu16-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # Ubuntu 16.04 FCGI 8.6.1
+  ubuntu16-fcgi-861:
+    image: deepworks/webdna-demo:ubuntu16-fcgi-8.6.1
+    extends:
+      service: ubuntu16-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
   # Ubuntu 18.04 FCGI 8.6.5
-  ubuntu18-fcgi:
+  ubuntu18-fcgi-865:
     image: deepworks/webdna-demo:ubuntu18-fcgi-8.6.5
     extends:
       service: base-vol
     build:
-      dockerfile: ubuntu/Dockerfile.ubuntu18
+      dockerfile: ubuntu/ubuntu18.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
   # Ubuntu 20.04 FCGI 8.6.5
-  ubuntu20-fcgi:
+  ubuntu20-fcgi-865:
     image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.5
     extends:
       service: base-vol
     build:
-      dockerfile: ubuntu/Dockerfile.ubuntu20
+      dockerfile: ubuntu/ubuntu20.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
   # Ubuntu 21.10 FCGI 8.6.5
-  ubuntu21-fcgi:
+  ubuntu21-fcgi-865:
     image: deepworks/webdna-demo:ubuntu21-fcgi-8.6.5
     extends:
       service: base-vol
     build:
-      dockerfile: ubuntu/Dockerfile.ubuntu21
+      dockerfile: ubuntu/ubuntu21.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
   # Ubuntu 22.04 FCGI 8.6.5
-  ubuntu22-fcgi:
+  ubuntu22-fcgi-865:
     image: deepworks/webdna-demo:ubuntu22-fcgi-8.6.5
     extends:
       service: base-vol
     build:
-      dockerfile: ubuntu/Dockerfile.ubuntu22
+      dockerfile: ubuntu/ubuntu22.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
