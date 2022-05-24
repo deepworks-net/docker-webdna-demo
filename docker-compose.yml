@@ -204,6 +204,30 @@ services:
       dockerfile: ubuntu/ubuntu18.Dockerfile
       args:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # Ubuntu 18.04 FCGI 8.6.4
+  ubuntu18-fcgi-864:
+    image: deepworks/webdna-demo:ubuntu18-fcgi-8.6.4
+    extends:
+      service: ubuntu18-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # Ubuntu 18.04 FCGI 8.6.3
+  ubuntu18-fcgi-863:
+    image: deepworks/webdna-demo:ubuntu18-fcgi-8.6.3
+    extends:
+      service: ubuntu18-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # Ubuntu 18.04 FCGI 8.6.1
+  ubuntu18-fcgi-861:
+    image: deepworks/webdna-demo:ubuntu18-fcgi-8.6.1
+    extends:
+      service: ubuntu18-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
   # Ubuntu 20.04 FCGI 8.6.5
   ubuntu20-fcgi-865:
     image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.5
@@ -213,6 +237,30 @@ services:
       dockerfile: ubuntu/ubuntu20.Dockerfile
       args:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # Ubuntu 20.04 FCGI 8.6.4
+  ubuntu20-fcgi-864:
+    image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.4
+    extends:
+      service: ubuntu20-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # Ubuntu 20.04 FCGI 8.6.3
+  ubuntu20-fcgi-863:
+    image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.3
+    extends:
+      service: ubuntu20-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # Ubuntu 20.04 FCGI 8.6.1
+  ubuntu20-fcgi-861:
+    image: deepworks/webdna-demo:ubuntu20-fcgi-8.6.1
+    extends:
+      service: ubuntu20-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
   # Ubuntu 21.10 FCGI 8.6.5
   ubuntu21-fcgi-865:
     image: deepworks/webdna-demo:ubuntu21-fcgi-8.6.5
@@ -222,6 +270,30 @@ services:
       dockerfile: ubuntu/ubuntu21.Dockerfile
       args:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # Ubuntu 21.10 FCGI 8.6.4
+  ubuntu21-fcgi-864:
+    image: deepworks/webdna-demo:ubuntu21-fcgi-8.6.4
+    extends:
+      service: ubuntu21-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # Ubuntu 21.10 FCGI 8.6.3
+  ubuntu21-fcgi-863:
+    image: deepworks/webdna-demo:ubuntu21-fcgi-8.6.3
+    extends:
+      service: ubuntu21-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # Ubuntu 21.10 FCGI 8.6.1
+  ubuntu21-fcgi-861:
+    image: deepworks/webdna-demo:ubuntu21-fcgi-8.6.1
+    extends:
+      service: ubuntu21-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
   # Ubuntu 22.04 FCGI 8.6.5
   ubuntu22-fcgi-865:
     image: deepworks/webdna-demo:ubuntu22-fcgi-8.6.5
@@ -231,3 +303,28 @@ services:
       dockerfile: ubuntu/ubuntu22.Dockerfile
       args:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
+  # Ubuntu 22.04 FCGI 8.6.4
+  ubuntu22-fcgi-864:
+    image: deepworks/webdna-demo:ubuntu22-fcgi-8.6.4
+    extends:
+      service: ubuntu22-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
+  # Ubuntu 22.04 FCGI 8.6.3
+  ubuntu22-fcgi-863:
+    image: deepworks/webdna-demo:ubuntu22-fcgi-8.6.3
+    extends:
+      service: ubuntu22-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
+  # Ubuntu 22.04 FCGI 8.6.1
+  ubuntu22-fcgi-861:
+    image: deepworks/webdna-demo:ubuntu22-fcgi-8.6.1
+    extends:
+      service: ubuntu22-fcgi-865
+    build:
+      args:
+        DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
+

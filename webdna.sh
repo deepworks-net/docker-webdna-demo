@@ -52,10 +52,9 @@ if [ "${DNA_TYPE}" == "FastCGI" ]; then
     fi
     chmod 0755 "WebDNA/WebDNA.fcgi"
     mv "WebDNA" ${WEBDNA_LOC}
+    chown -R $APACHE_USER:$APACHE_USER ${WEBDNA_LOC}
 
 fi
-
-chown -R $APACHE_USER:$APACHE_USER ${WEBDNA_LOC}
 
 # Quick Config of Apache
 mkdir -p "$WEBROOT/public"
@@ -82,6 +81,12 @@ AddHandler fcgid-script .dna .html .tpl .htm
 </IfModule>
 </Directory>
 DefaultMaxClassProcessCount 1
+
+# FCGI Defaults
+# Max Length of 8MB
+FcgidMaxRequestLen 8000000
+# IO Timeout
+FcgidIOTimeout 360000
 " >> "${APACHE_CONFIG}"
 # Quick Configure WebDNA
 sed -i -e "s/UnixUser.*/UnixUser	$APACHE_USER/g" "${WEBDNA_LOC}/webdna.ini"

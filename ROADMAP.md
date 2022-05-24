@@ -13,9 +13,9 @@
     - [ ] Add Demo for Server 8.6.5
 - [-] Add Demos for CentOS 7
     - [X] Add Demo for FCGI 8.6.5
-    - [ ] Add Demo for FCGI 8.6.4
-    - [ ] Add Demo for FCGI 8.6.3
-    - [ ] Add Demo for FCGI 8.6.1
+    - [X] Add Demo for FCGI 8.6.4
+    - [X] Add Demo for FCGI 8.6.3
+    - [X] Add Demo for FCGI 8.6.1
     - [ ] Add Demo for Server 8.6.5
     - [ ] Add Demo for Server 8.6.4
     - [ ] Add Demo for Server 8.6.3
@@ -58,36 +58,36 @@
     - [ ] Add Demo for Server 8.6.1
 - [-] Add Demos for Ubuntu 18.04
     - [X] Add Demo for FCGI 8.6.5
-    - [ ] Add Demo for FCGI 8.6.4
-    - [ ] Add Demo for FCGI 8.6.3
-    - [ ] Add Demo for FCGI 8.6.1
+    - [X] Add Demo for FCGI 8.6.4
+    - [X] Add Demo for FCGI 8.6.3
+    - [X] Add Demo for FCGI 8.6.1
     - [ ] Add Demo for Server 8.6.5
     - [ ] Add Demo for Server 8.6.4
     - [ ] Add Demo for Server 8.6.3
     - [ ] Add Demo for Server 8.6.1
 - [-] Add Demos for Ubuntu 20.04
     - [X] Add Demo for FCGI 8.6.5
-    - [ ] Add Demo for FCGI 8.6.4
-    - [ ] Add Demo for FCGI 8.6.3
-    - [ ] Add Demo for FCGI 8.6.1
+    - [X] Add Demo for FCGI 8.6.4
+    - [X] Add Demo for FCGI 8.6.3
+    - [X] Add Demo for FCGI 8.6.1
     - [ ] Add Demo for Server 8.6.5
     - [ ] Add Demo for Server 8.6.4
     - [ ] Add Demo for Server 8.6.3
     - [ ] Add Demo for Server 8.6.1
 - [-] Add Demos for Ubuntu 21.10
     - [X] Add Demo for FCGI 8.6.5
-    - [ ] Add Demo for FCGI 8.6.4
-    - [ ] Add Demo for FCGI 8.6.3
-    - [ ] Add Demo for FCGI 8.6.1
+    - [X] Add Demo for FCGI 8.6.4
+    - [X] Add Demo for FCGI 8.6.3
+    - [X] Add Demo for FCGI 8.6.1
     - [ ] Add Demo for Server 8.6.5
     - [ ] Add Demo for Server 8.6.4
     - [ ] Add Demo for Server 8.6.3
     - [ ] Add Demo for Server 8.6.1
 - [-] Add Demos for Ubuntu 22.04
     - [X] Add Demo for FCGI 8.6.5
-    - [ ] Add Demo for FCGI 8.6.4
-    - [ ] Add Demo for FCGI 8.6.3
-    - [ ] Add Demo for FCGI 8.6.1
+    - [X] Add Demo for FCGI 8.6.4
+    - [X] Add Demo for FCGI 8.6.3
+    - [X] Add Demo for FCGI 8.6.1
     - [ ] Add Demo for Server 8.6.5
     - [ ] Add Demo for Server 8.6.4
     - [ ] Add Demo for Server 8.6.3
