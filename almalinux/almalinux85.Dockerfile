@@ -1,5 +1,5 @@
 # Pull the Base Image
-FROM almalinux:8.5-20220510 as Base
+FROM almalinux:8.10-20240923 as Base
 
 ARG DNA_FOLDER="${DNA_FOLDER:-WebDNA-folder-8.6}"
 ARG DNA_EXECUTABLE="${DNA_EXECUTABLE:-WebDNA-Linux-FastCGI-8.6.5}"
