@@ -1,7 +1,6 @@
-version: "3.9"
 services:
   base:
-    image: deepworks/webdna-demo:base
+    image: deepworks/webdna:base
     expose:
       - 80
       - 443
@@ -19,7 +18,7 @@ services:
         target: /var/www/html/public
   # AlmaLinux 8.5 FCGI 8.6.5
   almalinux85-fcgi-865:
-    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.5
+    image: deepworks/webdna:almalinux85-fcgi-8.6.5
     extends:
       service: base-vol
     build:
@@ -28,7 +27,7 @@ services:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.5"
   # AlmaLinux 8.5 FCGI 8.6.4
   almalinux85-fcgi-864:
-    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.4
+    image: deepworks/webdna:almalinux85-fcgi-8.6.4
     extends:
       service: almalinux85-fcgi-865
     build:
@@ -36,7 +35,7 @@ services:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.4"
   # AlmaLinux 8.5 FCGI 8.6.3
   almalinux85-fcgi-863:
-    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.3
+    image: deepworks/webdna:almalinux85-fcgi-8.6.3
     extends:
       service: almalinux85-fcgi-865
     build:
@@ -44,7 +43,7 @@ services:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.3"
   # AlmaLinux 8.5 FCGI 8.6.1
   almalinux85-fcgi-861:
-    image: deepworks/webdna-demo:almalinux85-fcgi-8.6.1
+    image: deepworks/webdna:almalinux85-fcgi-8.6.1
     extends:
       service: almalinux85-fcgi-865
     build:
