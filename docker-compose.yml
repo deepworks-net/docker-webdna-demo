@@ -51,7 +51,7 @@ services:
         DNA_EXECUTABLE: "WebDNA-Linux-FastCGI-8.6.1"
   # Alpine 3.12 FCGI 8.6.5
   alpine312-fcgi-865:
-    image: deepworks/webdna-demo:alpine312-fcgi-8.6.5
+    image: deepworks/webdna:alpine312-fcgi-8.6.5
     extends:
       service: base
     volumes:
@@ -60,6 +60,19 @@ services:
         target: /var/www/localhost/htdocs/public
     build:
       dockerfile: alpine/alpine312.Dockerfile
+      args:
+        DNA_EXECUTABLE: "WebDNA-Alpine-FastCGI-8.6.5"
+  # Alpine 3.21 FCGI 8.6.5
+  alpine321-fcgi-865:
+    image: deepworks/webdna:alpine321-fcgi-8.6.5
+    extends:
+      service: base
+    volumes:
+      - type: bind
+        source: ./public
+        target: /var/www/localhost/htdocs/public
+    build:
+      dockerfile: alpine/alpine321.Dockerfile
       args:
         DNA_EXECUTABLE: "WebDNA-Alpine-FastCGI-8.6.5"
   # CentOS 7 FCGI 8.6.5
