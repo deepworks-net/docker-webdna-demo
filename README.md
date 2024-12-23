@@ -31,7 +31,7 @@ Choose the OS/WebDNA Version to run/build from the [docker-compose.yml](docker-c
 - [Ubuntu](ubuntu/README.md)
 
 ### Run the Project:
-Then use the following command to run the demo by again substituting {SERVICE} with service name:
+Then use the following command to run the container by again substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose up -d {SERVICE}
 # To run ubuntu22-fcgi-865 after building:
@@ -39,14 +39,14 @@ docker-compose up -d ubuntu22-fcgi-865
 ```
 
 ### Build the project:
-From there run the following command to build the demo substituting {SERVICE} with service name:
+From there run the following command to container the demo substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose build {SERVICE}
 # To build ubuntu22-fcgi-865:
 docker-compose build ubuntu22-fcgi-865
 ```
 
-Then use the following command to run the demo by again substituting {SERVICE} with service name:
+Then use the following command to run the container by again substituting {SERVICE} with service name:
 ```SHELL
 # docker-compose up -d {SERVICE}
 # To run ubuntu22-fcgi-865 after building:

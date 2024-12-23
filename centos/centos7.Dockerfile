@@ -14,10 +14,16 @@ WORKDIR /tmp
 
 # Copy over setup scripts
 COPY ../webdna.sh ./
+# Copy over Vault Repo
+COPY ./centos/CentOS-Vault.repo /etc/yum.repos.d/
 
 ## Build The Container
 # Perform Updates
-RUN yum -y install dnf && \ 
+RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/CentOS-Base.repo && \
+    mv /etc/yum.repos.d/CentOS-Vault.repo /etc/yum.repos.d/CentOS-Base.repo && \
+    yum clean all && \ 
+    yum makecache && \ 
+    yum -y install dnf && \ 
     dnf --setopt=install_weak_deps=False -y install wget httpd mod_fcgid mod_ssl openssl unzip && \
     # Run WebDNA Setup Script
     DNA_FOLDER="$DNA_FOLDER" \
