@@ -21,18 +21,7 @@ jobs:
           repository: deepworks-net/utilities.docker
           ref: develop
           path: scripts/utils
-
-      - name: Debug directory structure
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "Directory contents:"
-          ls -la
-          echo "Scripts directory:"
-          ls -la scripts/
-          echo "Utils directory:"
-          ls -la scripts/utils/
-
+        
       - name: Parse tag and set environment
         id: env
         run: |
@@ -46,7 +35,7 @@ jobs:
           echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_OUTPUT
           echo "IMAGE_VERSION=$TAG" >> $GITHUB_OUTPUT
           echo "SERVICE_NAME=$SERVICE_NAME" >> $GITHUB_OUTPUT
-
+          
       - name: Load environment variables
         run: |
           while IFS='=' read -r key value; do
@@ -55,10 +44,24 @@ jobs:
             value=$(echo "$value" | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//")
             echo "$key=$value" >> $GITHUB_ENV
           done < "${{ steps.env.outputs.DOCKER_UTILS_ENV }}"
+        shell: bash  # Explicitly specify bash
         
       - name: Build Docker image
         run: |
-            chmod +x scripts/build.sh
-            scripts/build.sh -c -i ${{ steps.env.outputs.IMAGE_NAME }} -v ${{ steps.env.outputs.IMAGE_VERSION }} -s ${{ steps.env.outputs.SERVICE_NAME }} -t
+          # Make scripts executable
+          chmod +x scripts/build.sh
+          chmod +x scripts/utils/funcs.sh
+          
+          # Export paths for the build script to find utils
+          export DOCKER_UTILS_PATH="$GITHUB_WORKSPACE/scripts/utils"
+          export PATH="$DOCKER_UTILS_PATH:$PATH"
+          
+          # Run build with explicit bash and debug
+          bash -x scripts/build.sh -c \
+            -i ${{ steps.env.outputs.IMAGE_NAME }} \
+            -v ${{ steps.env.outputs.IMAGE_VERSION }} \
+            -s ${{ steps.env.outputs.SERVICE_NAME }} \
+            -t
+        shell: bash  # Explicitly specify bash
         env:
-            DOCKER_UTILS_ENV: ${{ steps.env.outputs.DOCKER_UTILS_ENV }}
+          DOCKER_UTILS_ENV: ${{ steps.env.outputs.DOCKER_UTILS_ENV }}
