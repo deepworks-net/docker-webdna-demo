@@ -1,0 +1,31 @@
+[GetChars start=1&trim=both][listfiles path=libs][showif [isfile]=T][Showif [filename]^.inc][include file=libs/[filename]][/showif][/showif][/listfiles][/Getchars]
+
+String 1: [text show=t]encodeString1=abc123!?$*&()'-=@~[/text]</br>
+String 2: [text show=t]encodeString2=abc123!?$v&()'-=@~ý[/text]</br>
+Default Header 1: [text show=t]defaultHeader1={"alg":"HS256","typ":"JWT"}[/text]</br>
+</br>
+<h2>Encryption Tests</h2>
+Base64 (1): [text show=t]decrypt1=[JWT_EncryptBase64 string=[URL][encodeString1][/URL]][/text]</br>
+Base64 (2): [text show=t]decrypt2=[JWT_EncryptBase64 string=[URL][encodeString2][/URL]][/text]</br>
+Base64url (1): [text show=t]decrypt3=[JWT_EncryptBase64url string=[URL][encodeString1][/URL]][/text]</br>
+Base64url (2): [text show=t]decrypt4=[JWT_EncryptBase64url string=[URL][encodeString2][/URL]][/text]</br>
+Decrypt Base64 (1): [JWT_DecryptBase64 string=[URL][decrypt1][/URL]]</br>
+Decrypt Base64 (2): [JWT_DecryptBase64 string=[URL][decrypt2][/URL]]</br>
+Decrypt Base64url (1): [JWT_DecryptBase64url string=[URL][decrypt3][/URL]]</br>
+Decrypt Base64url (2): [JWT_DecryptBase64url string=[URL][decrypt4][/URL]]</br>
+
+<h2>Token Tests</h2>
+Make Default Header: [JWT_MakeHeader]</br>
+[!]
+[JWT_DeclareVars json_object=[URL][defaultHeader1][/URL]]
+[/!]
+
+[JSONStore table=json_vars]
+[defaultHeader1]
+[/JSONStore]
+	[Search table=json_vars&eqTYPdatarq=JWT]
+		[numfound]
+        [Founditems]
+            [TYP] - [ALG]
+        [/Founditems]
+	[/Search]

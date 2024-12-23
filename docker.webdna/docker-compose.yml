@@ -1,0 +1,77 @@
+name: docker.webdna
+services:
+  Alpine:
+    image: deepworks/docker.webdna:alpine
+    command: /sbin/init
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+      - type: bind
+        source: ./app
+        target: /.deepworks/www
+    build:
+      context: .
+      args:
+        VERSION: base
+        image_name: docker.webdna
+        image_version: alpine-1.0.0
+        base_image_name: docker.educloud.org/docker/webdna
+        base_image_version: elpine-1.1.2
+        # Required for 'Branding' 
+        THEDIRECTORY: /.educloud/
+        THEAUTHOR: EduCloud@CiTi
+        THEEMAIL: educloud@citiboces.org
+  Elpine-MSSQL:
+    image: jarvis-webdna:elpine-mssql
+    command: /sbin/init
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+      - type: bind
+        source: ./app
+        target: /.educloud/www
+    build:
+      context: .
+      args:
+        VERSION: mssql
+        image_name: jarvis-webdna
+        image_version: elpine-mssql-1.0.6
+        base_image_name: docker.educloud.org/docker/webdna
+        base_image_version: elpine-mssql-1.1.2
+        # Required for 'Branding' 
+        THEDIRECTORY: /.educloud/
+        THEAUTHOR: EduCloud@CiTi
+        THEEMAIL: educloud@citiboces.org
+  Elpine-Dev:
+    image: jarvis-webdna:elpine-dev
+    command: /sbin/init
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+      - type: bind
+        source: ./app
+        target: /.educloud/www
+    build:
+      context: .
+      args:
+        VERSION: dev
+        image_name: jarvis-webdna
+        image_version: elpine-dev-1.0.6
+        base_image_name: docker.educloud.org/docker/webdna
+        base_image_version: elpine-dev-1.1.2
+        # Required for 'Branding' 
+        THEDIRECTORY: /.educloud/
+        THEAUTHOR: EduCloud@CiTi
+        THEEMAIL: educloud@citiboces.org

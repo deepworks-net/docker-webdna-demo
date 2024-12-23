@@ -1,0 +1,95 @@
+[!] Document These and Move them to a Jarvis Library file! [/!]
+
+[text]J_DEF_CONTENT_TYPE=application/json;[/text]
+
+[Function name=J_BUILD_HEADER]
+[Showif [isNull varName=status]=T][text]status=200[/text][/Showif]
+[Showif [isNull varName=content-type]=T][text]content-type=[J_DEF_CONTENT_TYPE][/text][/Showif]
+[Showif [isNull varName=message]=T][text]message=OK[/text][/Showif]
+[RETURN]HTTP/2.0 [status] [message]
+Content-Type: [content-type][CRLF][!]
+[/!][Hideif [isNull varName=headers]=T][ListWords words=[headers]&delimiters=,][GetChars start=1&trim=both][word][/GetChars][CRLF][/ListWords][/Hideif][CRLF][CRLF]
+[/RETURN]
+[/Function]
+
+[Function name=J_BASE_PAGE]
+[Showif [isNull varName=status]=T][text]status=200[/text][/Showif]
+[Showif [isNull varName=message]=T][text]message=OK[/text][/Showif]
+[RETURN][RETURNRAW][J_BUILD_HEADER]
+{ "status": "[status]", "msg": "[CleanJSONVar varName=message]" }
+[/RETURNRAW][/RETURN]
+[/Function]
+
+[Function name=J_401][J_BASE_PAGE status=401&message=[URL]UNAUTHORIZED![/URL]][/Function]
+[Function name=J_404][J_BASE_PAGE status=404&message=[URL][curPath] NOT FOUND[/URL]][/Function]
+[Function name=J_500][J_BASE_PAGE status=500&message=[URL]INTERNAL SERVER ERROR[/URL]][/Function]
+
+[Function name=J_PAGE]
+[Showif [isNull varName=status]=T][text]status=200[/text][/Showif]
+[Showif [isNull varName=message]=T][text]message=OK[/text][/Showif]
+[RETURN][RETURNRAW][J_BUILD_HEADER]
+[include file=[page_url]]
+[/RETURNRAW][/RETURN]
+[/Function]
+
+[Function name=J_ROUTE]
+    [text]tp=404[/text]
+
+    [!] Get The Root To Narrow It Down and Parse the Path! [/!]
+    [text]root=/[/text]
+    [ListWords words=[curPath]&delimiters=/]
+        [Showif [index]=1]
+            [text]root=[root][word][/text]
+        [/Showif]
+        [text]path[index]=[word][/text]
+    [/ListWords]
+
+    [!] Check the Routes db [/!]
+    [text]match=F[/text]
+    [Search db=config/routes.db&bwROUTEdatarq=[URL][root][/URL]]
+        [Founditems]
+            [Hideif [match]=T]
+                [text]tgrep=[GREP search=[URL]\?[/URL]&replace=[URL]&[/URL]][to][/GREP][/text]
+                
+                [Showif [URL][curPath][/URL]=[URL][route][/URL]]
+                    [text]match=T[/text]
+                    [text]tp=[tgrep][/text]
+					[text]content-typeVar=[content-type][/text]
+                [/Showif]
+                
+                [Showif [match]=F]
+
+                    [text]idPattern=[GREP search=/&replace=\/][GREP search=[URL]:[a-zA-Z0-9]+:[/URL]&replace=[URL][^/]+[/URL]][route][/GREP][/GREP][/text]
+                    
+                    [text]res=[GREP search=[URL][idPattern][/URL]&replace=MATCH][curPath][/GREP][/text]
+
+                    [Showif [res]=MATCH]
+                        [text]count=1[/text]
+                        [text]params=[/text]
+                        [ListWords words=[route]&delimiters=/]
+                            [Showif [word]~:]
+                                [text]params=[params]&[GREP search=:&replace=][word][/GREP]=[URL][INTERPRET][path[index]][/INTERPRET][/URL][/text]
+                                [text]param[count]=[INTERPRET][path[index]][/INTERPRET][/text]
+                                [text]count=[MATH][count]+1[/MATH][/text]
+                            [/showif]
+                        [/ListWords]
+
+                        [text]tp=[INTERPRET][tgrep][params][/INTERPRET][/text]
+						[text]content-typeVar=[content-type][/text]
+                    [/Showif]
+                    
+                [/Showif]
+                
+            [/Hideif]
+        [/Founditems]
+    [/Search]
+	
+	[IF ("[tp]"="404")]
+		[THEN]
+			[J_404]
+		[/THEN]
+		[ELSE]
+			[J_PAGE page_url=[URL][tp][/URL]&content-type=[content-typeVar]]
+		[/ELSE]
+	[/IF]
+[/FUNCTION]

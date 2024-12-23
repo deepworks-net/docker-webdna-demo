@@ -1,0 +1,28 @@
+[function name=randDigit][!]
+	[/!][math][random]%10[/math][!]
+[/!][/function]
+
+[function name=randLetter][!]
+	[/!][Capitalize][convertwords db=^/Jarvis/databases/numtoletter.db&word=WW][!]
+		[/!][math][random]%26[/math][!]
+	[/!][/convertwords][/Capitalize][!]
+[/!][/function]
+
+[function name=randomChar][!]
+	[/!][If [math][random]%2[/math]=0][!]
+		[/!][Then][randDigit][/Then][!]
+		[/!][Else][randLetter][/Else][!]
+	[/!][/If][!]
+[/!][/function]
+
+[function name=randomCode][!]
+	[/!][loop start=1&end=[instring]&advance=1][!]
+		[/!][randomChar][!]
+	[/!][/loop][!]
+[/!][/function]
+
+[function name=randomCodeINT][!]
+	[/!][loop start=1&end=[instring]&advance=1][!]
+		[/!][randDigit][!]
+	[/!][/loop][!]
+[/!][/function]
