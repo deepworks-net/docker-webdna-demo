@@ -58,14 +58,7 @@ jobs:
         
       - name: Build Docker image
         run: |
-          # Let's check if the script exists before trying to chmod it
-          if [ -f "scripts/utils/build.sh" ]; then
-            echo "Build script found"
-            chmod +x scripts/utils/build.sh
-            scripts/utils/build.sh -c -i ${{ steps.env.outputs.IMAGE_NAME }} -v ${{ steps.env.outputs.IMAGE_VERSION }} -s ${{ steps.env.outputs.SERVICE_NAME }} -t
-          else
-            echo "Looking for build script in:"
-            find . -name "build.sh"
-          fi
+            chmod +x scripts/build.sh
+            scripts/build.sh -c -i ${{ steps.env.outputs.IMAGE_NAME }} -v ${{ steps.env.outputs.IMAGE_VERSION }} -s ${{ steps.env.outputs.SERVICE_NAME }} -t
         env:
-          DOCKER_UTILS_ENV: ${{ steps.env.outputs.DOCKER_UTILS_ENV }}
+            DOCKER_UTILS_ENV: ${{ steps.env.outputs.DOCKER_UTILS_ENV }}
