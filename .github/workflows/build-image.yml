@@ -25,30 +25,36 @@ jobs:
           TAG=${GITHUB_REF#refs/tags/}
           
           # Get service name by removing the build version (last component)
-          SERVICE_NAME=$(echo $TAG | rev | cut -d'-' -f2- | rev)  # centos7-fcgi-865
+          SERVICE_NAME=$(echo $TAG | rev | cut -d'-' -f2- | rev)
           
           # Extract other components
-          DISTRO_FULL=$(echo $TAG | cut -d'-' -f1)     # centos7
-          TYPE=$(echo $TAG | cut -d'-' -f2)            # fcgi
-          DNA_VER=$(echo $TAG | cut -d'-' -f3)         # 865
-          BUILD_VER=$(echo $TAG | cut -d'-' -f4)       # 1.0.0
+          DISTRO_FULL=$(echo $TAG | cut -d'-' -f1)
+          TYPE=$(echo $TAG | cut -d'-' -f2)
+          DNA_VER=$(echo $TAG | cut -d'-' -f3)
+          BUILD_VER=$(echo $TAG | cut -d'-' -f4)
           
-          ENV_FILE="$GITHUB_WORKSPACE/${DISTRO_FULL%[0-9]*}/${DISTRO_FULL}.env"
+          # Debug current directory and file structure
+          pwd
+          ls -la
+          
+          # Set env file path relative to repository root
+          ENV_FILE="centos/centos7.env"  # Removed the leading slash
           IMAGE_NAME="deepworks/webdna"
           
           echo "DOCKER_UTILS_ENV=$ENV_FILE" >> $GITHUB_OUTPUT
           echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_OUTPUT
           echo "IMAGE_VERSION=$TAG" >> $GITHUB_OUTPUT
           echo "SERVICE_NAME=$SERVICE_NAME" >> $GITHUB_OUTPUT
-
+    
       - name: Load environment variables
         run: |
-          # Source the env file and export to GITHUB_ENV
+          # Debug file existence
+          ls -la centos/
+          cat ${{ steps.env.outputs.DOCKER_UTILS_ENV }}
+          
           while IFS='=' read -r key value; do
-            # Skip comments and empty lines
             [[ $key =~ ^#.*$ ]] && continue
             [[ -z $key ]] && continue
-            # Remove any quotes from the value
             value=$(echo "$value" | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//")
             echo "$key=$value" >> $GITHUB_ENV
           done < "${{ steps.env.outputs.DOCKER_UTILS_ENV }}"
