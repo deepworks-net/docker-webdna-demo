@@ -13,29 +13,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: develop          # Specify develop branch for main repo
-        
+          ref: develop
+
       - name: Checkout utils repo
         uses: actions/checkout@v4
         with:
           repository: deepworks-net/utilities.docker
-          ref: develop          # Specify develop branch for utils
+          ref: develop
           path: scripts/utils
-        
+
+      - name: Debug directory structure
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Directory contents:"
+          ls -la
+          echo "Scripts directory:"
+          ls -la scripts/
+          echo "Utils directory:"
+          ls -la scripts/utils/
+
       - name: Parse tag and set environment
         id: env
         run: |
           TAG=${GITHUB_REF#refs/tags/}
-          
-          # Get service name by removing the build version (last component)
-          SERVICE_NAME=$(echo $TAG | rev | cut -d'-' -f2- | rev)  # centos7-fcgi-865
-          
-          # Extract other components
-          DISTRO_FULL=$(echo $TAG | cut -d'-' -f1)     # centos7
-          TYPE=$(echo $TAG | cut -d'-' -f2)            # fcgi
-          DNA_VER=$(echo $TAG | cut -d'-' -f3)         # 865
-          BUILD_VER=$(echo $TAG | cut -d'-' -f4)       # 1.0.0
-          
+          SERVICE_NAME=$(echo $TAG | rev | cut -d'-' -f2- | rev)
+          DISTRO_FULL=$(echo $TAG | cut -d'-' -f1)
           ENV_FILE="$GITHUB_WORKSPACE/${DISTRO_FULL%[0-9]*}/${DISTRO_FULL}.env"
           IMAGE_NAME="deepworks/webdna"
           
@@ -46,19 +49,23 @@ jobs:
 
       - name: Load environment variables
         run: |
-          # Source the env file and export to GITHUB_ENV
           while IFS='=' read -r key value; do
-            # Skip comments and empty lines
             [[ $key =~ ^#.*$ ]] && continue
             [[ -z $key ]] && continue
-            # Remove any quotes from the value
             value=$(echo "$value" | sed -e 's/^"//' -e 's/"$//' -e "s/^'//" -e "s/'$//")
             echo "$key=$value" >> $GITHUB_ENV
           done < "${{ steps.env.outputs.DOCKER_UTILS_ENV }}"
         
       - name: Build Docker image
         run: |
-          chmod +x scripts/utils/build.sh
-          scripts/utils/build.sh -c -i ${{ steps.env.outputs.IMAGE_NAME }} -v ${{ steps.env.outputs.IMAGE_VERSION }} -s ${{ steps.env.outputs.SERVICE_NAME }} -t
+          # Let's check if the script exists before trying to chmod it
+          if [ -f "scripts/utils/build.sh" ]; then
+            echo "Build script found"
+            chmod +x scripts/utils/build.sh
+            scripts/utils/build.sh -c -i ${{ steps.env.outputs.IMAGE_NAME }} -v ${{ steps.env.outputs.IMAGE_VERSION }} -s ${{ steps.env.outputs.SERVICE_NAME }} -t
+          else
+            echo "Looking for build script in:"
+            find . -name "build.sh"
+          fi
         env:
           DOCKER_UTILS_ENV: ${{ steps.env.outputs.DOCKER_UTILS_ENV }}
