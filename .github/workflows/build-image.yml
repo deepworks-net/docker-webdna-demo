@@ -12,12 +12,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: develop          # Specify develop branch for main repo
         
       - name: Checkout utils repo
         uses: actions/checkout@v4
         with:
           repository: deepworks-net/utilities.docker
-          ref: develop
+          ref: develop          # Specify develop branch for utils
           path: scripts/utils
         
       - name: Parse tag and set environment
